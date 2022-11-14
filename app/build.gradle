@@ -16,7 +16,6 @@ android {
         versionCode 13
         versionName "3.0.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        buildConfigField "String", "EXODUS_API_KEY", "\"$System.env.EXODUS_API_KEY\""
     }
     signingConfigs {
         releaseConfig {
