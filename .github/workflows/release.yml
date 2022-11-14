@@ -30,6 +30,9 @@ jobs:
         run: |
           echo "${{secrets.RELEASE_KEYSTORE}}" > release.keystore.asc
           gpg -d --passphrase "${{secrets.RELEASE_KEYSTORE_PGP_PASSPHRASE}}" --batch release.keystore.asc > app/release.keystore
+      - name: Add API_Key
+        run: |
+            sed -i 's/API_Key/${{secrets.EXODUS_API_KEY}}/' ./app/src/main/cpp/native-lib.cpp
       - name: Generate release build
         run: ./gradlew assembleRelease
       - name: Execute exodus-standalone
