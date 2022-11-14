@@ -6,7 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import org.eu.exodus_privacy.exodusprivacy.BuildConfig
+import org.eu.exodus_privacy.exodusprivacy.objects.Keys.apiKey
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -31,7 +31,7 @@ object ExodusModule {
     fun provideInterceptor(): Interceptor {
         return Interceptor { chain ->
             val builder = chain.request().newBuilder()
-            builder.header("Authorization", "Token ${BuildConfig.EXODUS_API_KEY}")
+            builder.header("Authorization", "Token ${apiKey()}")
             return@Interceptor chain.proceed(builder.build())
         }
     }
